@@ -1,0 +1,9 @@
+[phases.build]
+cmds = ["mvn clean package -DskipTests"]
+
+[phases.start]
+cmd = "java -Dspring.profiles.active=railway -Dserver.port=$PORT -jar target/*.jar"
+
+[variables]
+MAVEN_OPTS = "-Xmx1024m"
+JAVA_OPTS = "-Xmx512m -Xms256m"
