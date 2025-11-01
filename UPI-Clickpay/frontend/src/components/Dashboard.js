@@ -14,6 +14,7 @@ const Dashboard = () => {
   });
   const [dateRange, setDateRange] = useState('today');
   const [loading, setLoading] = useState(true);
+  const [activeTab, setActiveTab] = useState('overview');
 
   useEffect(() => {
     fetchTransactions();
@@ -60,8 +61,6 @@ const Dashboard = () => {
   if (loading) {
     return <div className="container">Loading...</div>;
   }
-
-  const [activeTab, setActiveTab] = useState('overview');
 
   return (
     <div className="container">

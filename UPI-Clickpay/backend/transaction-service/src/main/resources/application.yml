@@ -1,9 +1,9 @@
 server:
-  port: 8081
+  port: 8083
 
 spring:
   application:
-    name: payment-service
+    name: transaction-service
   
   datasource:
     url: jdbc:postgresql://localhost:5432/paymentgateway
@@ -18,32 +18,23 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
   
-  redis:
-    host: localhost
-    port: 6379
+  profiles:
+    active: local
 
 jwt:
   secret: mySecretKeyForPaymentGatewayApplication
   expiration: 86400000
 
-# UPI Configuration
-upi:
-  merchant:
-    id: "merchant@upi"
-    name: "Payment Gateway"
-  
-# Bank API Configuration (placeholder)
-bank:
-  api:
-    url: "https://api.bank.com"
-    key: "bank_api_key"
-
 logging:
   level:
     com.paymentgateway: DEBUG
-# C
-ORS Configuration
+    org.springframework.security: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+
+# CORS Configuration
 cors:
   allowed-origins: 
     - http://localhost:3000
@@ -63,7 +54,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: health,info
+        include: health,info,metrics
   endpoint:
     health:
       show-details: always
